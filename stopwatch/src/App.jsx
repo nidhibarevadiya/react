@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import './App.css'
 import Stopwatch from './assets/stopwatch'
 
