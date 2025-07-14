@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+.main{
+    width:100;
+}
+.main1{
+width:80%;
+height:550px;
+gap:2px;
+}
+
+
+.aboutpart1{
+    width:40%; 
+}
+.img1{
+width:272px;
+    height: 400px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 180px 180px 10px 10px;
+
+}
+.img2{
+    height: 480px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 180px 180px 10px 10px;
+}
+.abouthead{
+    color:#ff6e4e;
+    line-height: 1.5em;
+      text-align:left;
+}
+.abouthead1{
+    color:#180000;    
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1.15em;
+      text-align:left;
+}
+.aboutp{
+     color:#180000;
+    font-size: 30px;
+    font-style: inherit;
+    font-weight: inherit;
+       text-align:left;
+        line-height: 1.5em;
+}
+.btn{
+    color:#ffffff;
+    background-color:#ff6e4e;
+    font-size: 15px;
+    line-height: 1;
+    padding: 12px 24px;
+    border-radius: 3px;
+    
+       text-align:left;
+       width:200px;
+       text-align:center;
+       height:60px;
+       border-radius:10px;
+}
+.cantaent{
+    width:50%;
+    text-align:left;
+}
+.homemain{
+    height:700px;
+}
+.homemain1{
+    height: 700px;
+
+}
