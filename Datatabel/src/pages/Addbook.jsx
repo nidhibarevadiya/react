@@ -37,8 +37,7 @@ const AddBook = () => {
       const response = await axios.post("http://localhost:3000/Data", book);
       console.log("Book added:", response.data);
       alert("Book added successfully!");
-
-      setBook({ image: "", name: "", price: "", author: "" }); // reset
+      setBook({ image: "", name: "", price: "", author: "" });
     } catch (err) {
       console.error("Error adding book:", err);
       alert("Error adding book");
@@ -47,10 +46,23 @@ const AddBook = () => {
 
   return (
     <Container maxWidth="sm">
-      <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
-        <Typography variant="h5" gutterBottom>
+      <Paper
+        elevation={3}
+        sx={{
+          p: 4,
+          mt: 4,
+          backgroundColor: "#c5a992",
+          borderRadius: "16px",
+        }}
+      >
+        <Typography
+          variant="h5"
+          gutterBottom
+          sx={{ color: "#74642f", fontWeight: "bold", textAlign: "center" }}
+        >
           📚 Add New Book
         </Typography>
+
         <Box
           component="form"
           onSubmit={handleSubmit}
@@ -62,6 +74,10 @@ const AddBook = () => {
             value={book.image}
             onChange={handleChange}
             fullWidth
+            InputLabelProps={{ style: { color: "#74642f" } }}
+            InputProps={{
+              style: { color: "#74642f", backgroundColor: "#f5f2ed" },
+            }}
           />
           <TextField
             label="Book Name"
@@ -69,6 +85,10 @@ const AddBook = () => {
             value={book.name}
             onChange={handleChange}
             fullWidth
+            InputLabelProps={{ style: { color: "#74642f" } }}
+            InputProps={{
+              style: { color: "#74642f", backgroundColor: "#f5f2ed" },
+            }}
           />
           <TextField
             label="Price"
@@ -77,6 +97,10 @@ const AddBook = () => {
             value={book.price}
             onChange={handleChange}
             fullWidth
+            InputLabelProps={{ style: { color: "#74642f" } }}
+            InputProps={{
+              style: { color: "#74642f", backgroundColor: "#f5f2ed" },
+            }}
           />
           <TextField
             label="Author Name"
@@ -84,9 +108,24 @@ const AddBook = () => {
             value={book.author}
             onChange={handleChange}
             fullWidth
+            InputLabelProps={{ style: { color: "#74642f" } }}
+            InputProps={{
+              style: { color: "#74642f", backgroundColor: "#f5f2ed" },
+            }}
           />
 
-          <Button variant="contained" color="primary" type="submit">
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{
+              backgroundColor: "#74642f",
+              "&:hover": {
+                backgroundColor: "#5c5028",
+              },
+              color: "#fff",
+              fontWeight: "bold",
+            }}
+          >
             Add Book
           </Button>
         </Box>
