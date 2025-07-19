@@ -8,6 +8,12 @@ import {
   CardContent,
   Button,
   Stack,
+  TextField,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  Pagination,
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +21,13 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
+  const [authorFilter, setAuthorFilter] = useState("all");
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const booksPerPage = 10;
 
   useEffect(() => {
     fetchBooks();
@@ -24,7 +37,12 @@ const Home = () => {
     axios
       .get("http://localhost:3000/Data")
       .then((res) => {
-        setBooks(res.data);
+        const lowercaseBooks = res.data.map((book) => ({
+          ...book,
+          name: book.name.toLowerCase(),
+          author: book.author.toLowerCase(),
+        }));
+        setBooks(lowercaseBooks);
       })
       .catch((err) => {
         console.error("Error fetching books:", err);
@@ -42,6 +60,35 @@ const Home = () => {
       });
   };
 
+  // Filter and sort books
+  const filteredBooks = books
+    .filter((book) => book.name.includes(searchTerm.toLowerCase()))
+    .filter((book) =>
+      authorFilter === "all" ? true : book.author === authorFilter
+    );
+
+  const sortedBooks = [...filteredBooks].sort((a, b) => {
+    if (sortOrder === "lowToHigh") {
+      return parseFloat(a.price) - parseFloat(b.price);
+    } else if (sortOrder === "highToLow") {
+      return parseFloat(b.price) - parseFloat(a.price);
+    } else {
+      return 0;
+    }
+  });
+
+  const uniqueAuthors = [...new Set(books.map((b) => b.author))];
+
+  // Pagination logic
+  const indexOfLastBook = currentPage * booksPerPage;
+  const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  const currentBooks = sortedBooks.slice(indexOfFirstBook, indexOfLastBook);
+  const totalPages = Math.ceil(sortedBooks.length / booksPerPage);
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
   return (
     <Container sx={{ mt: 4 }}>
       <Typography
@@ -57,18 +104,104 @@ const Home = () => {
         📚 Book Collection
       </Typography>
 
+      {books.length > 0 && (
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={2}
+          sx={{ mb: 4 }}
+        >
+          <TextField
+            label="Search by Book Name"
+            variant="outlined"
+            fullWidth
+            onChange={(e) => {
+              setSearchTerm(e.target.value.toLowerCase());
+              setCurrentPage(1); // Reset page on search
+            }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                backgroundColor: "#74642f",
+                color: "white",
+                borderRadius: "8px",
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#5f5326",
+              },
+              "& .MuiInputLabel-shrink": {
+                color: "white",
+              },
+            }}
+          />
+
+          <FormControl sx={{ minWidth: 160 }}>
+            <InputLabel sx={{ color: "white" }}>Sort by Price</InputLabel>
+            <Select
+              value={sortOrder}
+              label="Sort by Price"
+              onChange={(e) => {
+                setSortOrder(e.target.value);
+                setCurrentPage(1); // Reset page on sort
+              }}
+              displayEmpty
+              sx={{
+                backgroundColor: "#74642f",
+                color: "white",
+                borderRadius: "8px",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#5f5326",
+                },
+              }}
+            >
+              <MenuItem value="none">None</MenuItem>
+              <MenuItem value="lowToHigh">Low to High</MenuItem>
+              <MenuItem value="highToLow">High to Low</MenuItem>
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{ minWidth: 160 }}>
+            <InputLabel sx={{ color: "white" }}>Filter by Author</InputLabel>
+            <Select
+              value={authorFilter}
+              label="Filter by Author"
+              onChange={(e) => {
+                setAuthorFilter(e.target.value);
+                setCurrentPage(1); // Reset page on filter
+              }}
+              sx={{
+                backgroundColor: "#74642f",
+                color: "white",
+                borderRadius: "8px",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#5f5326",
+                },
+              }}
+            >
+              <MenuItem value="all">All Authors</MenuItem>
+              {uniqueAuthors.map((author, index) => (
+                <MenuItem key={index} value={author}>
+                  {author}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Stack>
+      )}
+
       <Grid container spacing={4} justifyContent="center">
-        {books.map((book) => (
+        {currentBooks.map((book) => (
           <Grid item key={book.id} xs={12} sm={6} md={3}>
             <Card
               sx={{
-                height: 410,             
-                width: "270px",           
+                height: 410,
+                width: "270px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "space-between",
-                margin:2,
+                margin: 2,
                 padding: 2,
                 boxShadow: 13,
                 borderRadius: 3,
@@ -93,11 +226,15 @@ const Home = () => {
                     fontWeight: 600,
                     fontFamily: "'Playfair Display', serif",
                     color: "#c5a992",
+                    textTransform: "lowercase",
                   }}
                 >
                   {book.name}
                 </Typography>
-                <Typography variant="body2" sx={{ color: "#757575" }}>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#757575", textTransform: "lowercase" }}
+                >
                   ✍️ {book.author}
                 </Typography>
                 <Typography
@@ -140,6 +277,30 @@ const Home = () => {
           </Grid>
         ))}
       </Grid>
+
+      {/* Pagination Controls */}
+      {sortedBooks.length > booksPerPage && (
+        <Stack direction="row" justifyContent="center" sx={{ mt: 4 }}>
+          <Pagination
+            count={totalPages}
+            page={currentPage}
+            onChange={handlePageChange}
+            color="primary"
+            sx={{
+              ".MuiPaginationItem-root": {
+                backgroundColor: "#74642f",
+                color: "white",
+                "&.Mui-selected": {
+                  backgroundColor: "#5f5326",
+                },
+                "&:hover": {
+                  backgroundColor: "#5f5326",
+                },
+              },
+            }}
+          />
+        </Stack>
+      )}
     </Container>
   );
 };
