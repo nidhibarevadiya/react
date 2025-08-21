@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "OpenWeather API",
+    "description": "Weather data and forecasts.",
+    "url": "https://openweathermap.org/api",
+    "image": "https://cdn-icons-png.flaticon.com/512/1163/1163624.png"
+  },
+  {
+    "id": 2,
+    "name": "Unsplash API",
+    "description": "Free stock photos.",
+    "url": "https://unsplash.com/developers",
+    "image": "https://cdn-icons-png.flaticon.com/512/3062/3062634.png"
+  }
+]

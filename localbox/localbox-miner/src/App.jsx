@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "./styles/GlobalStyles";
+import { GlobalStyles } from "./styles//GlobalStyles";
 import { lightTheme, darkTheme } from "./styles/themes";
 import ThemeToggle from "./components/ThemeToggle";
 
