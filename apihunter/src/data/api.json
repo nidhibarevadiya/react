@@ -12,5 +12,33 @@
     "description": "Free stock photos.",
     "url": "https://unsplash.com/developers",
     "image": "https://cdn-icons-png.flaticon.com/512/3062/3062634.png"
+  },
+  {
+    "id": 3,
+    "name": "NewsAPI",
+    "description": "Get breaking news headlines and articles.",
+    "url": "https://www.divyabhaskar.co.in/",
+    "image": "https://cdn-icons-png.flaticon.com/512/21/21601.png"
+  },
+  {
+    "id": 4,
+    "name": "TheMealDB",
+    "description": "Free API for meals and recipes.",
+    "url": "https://www.bk.com/",
+    "image": "https://cdn-icons-png.flaticon.com/512/3075/3075977.png"
+  },
+  {
+    "id": 5,
+    "name": "CoinGecko",
+    "description": "https://www.angelone.in/",
+    "url": "https://www.coingecko.com/en/api",
+    "image": "https://cdn-icons-png.flaticon.com/512/6001/6001937.png"
+  },
+  {
+    "id": 6,
+    "name": "PokeAPI",
+    "description": "Pokemon data for developers.",
+    "url": "https://www.pocketnovel.com/",
+    "image": "https://cdn-icons-png.flaticon.com/512/188/188918.png"
   }
 ]

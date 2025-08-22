@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import SearchBar from "../components/serchbar";
 import ApiCard from "../components/apicard";
 import apis from "../data/api.json";
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, Paper } from "@mui/material";
 
 export default function Home() {
   const [query, setQuery] = useState("");
@@ -20,36 +20,56 @@ export default function Home() {
     <Box
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #667eea, #764ba2)",
-        p: 4,
+        background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
+        p: { xs: 3, md: 6 },
       }}
     >
-      {/* Title */}
-      <Typography
-        variant="h3"
-        align="center"
-        sx={{ color: "white", fontWeight: "bold", mb: 3 }}
-      >
-         API Hunter
-      </Typography>
+      {/* Hero Section */}
+      <Box textAlign="center" mb={6}>
+        <Typography
+          variant="h2"
+          sx={{
+            color: "white",
+            fontWeight: 800,
+            letterSpacing: 1.2,
+            mb: 2,
+          }}
+        >
+          🔍 API Hunter
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            color: "rgba(255,255,255,0.8)",
+            maxWidth: 700,
+            mx: "auto",
+            lineHeight: 1.6,
+          }}
+        >
+          Discover, explore, and test public APIs all in one place.  
+          Search by name or keyword and start building smarter projects 🚀.
+        </Typography>
+      </Box>
 
-      {/* Search bar wrapper */}
-      <Box
+      {/* Search bar wrapper (Glassmorphism) */}
+      <Paper
+        elevation={8}
         sx={{
-          maxWidth: "600px",
+          maxWidth: 700,
           mx: "auto",
-          background: "white",
-          borderRadius: "12px",
-          boxShadow: 4,
-          p: 2,
-          mb: 4,
+          mb: 6,
+          p: 2.5,
+          borderRadius: "16px",
+          background: "rgba(255, 255, 255, 0.1)",
+          backdropFilter: "blur(12px)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
         }}
       >
         <SearchBar query={query} setQuery={setQuery} />
-      </Box>
+      </Paper>
 
       {/* Cards Grid */}
-      <Grid container spacing={3} justifyContent="center">
+      <Grid container spacing={4} justifyContent="center">
         {filtered.length > 0 ? (
           filtered.map((api) => (
             <Grid item key={api.id} xs={12} sm={6} md={4} lg={3}>
@@ -57,12 +77,21 @@ export default function Home() {
             </Grid>
           ))
         ) : (
-          <Typography
-            variant="h6"
-            sx={{ color: "white", mt: 5, fontStyle: "italic" }}
+          <Box
+            sx={{
+              textAlign: "center",
+              color: "white",
+              mt: 8,
+              opacity: 0.9,
+            }}
           >
-            ❌ No APIs found. Try searching something else!
-          </Typography>
+            <Typography variant="h5" gutterBottom>
+              ❌ No APIs Found
+            </Typography>
+            <Typography variant="body1">
+              Try adjusting your search or explore a different keyword 🔎
+            </Typography>
+          </Box>
         )}
       </Grid>
     </Box>

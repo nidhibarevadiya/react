@@ -1,11 +1,11 @@
-import { Container, Typography, Box, Paper } from "@mui/material";
+import { Typography, Box, Paper } from "@mui/material";
 
 export default function About() {
   return (
     <Box
       sx={{
         minHeight: "100vh",
-        backgroundColor: "#f4a261", // 🔥 Background Color Changed (Orange shade)
+        background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -13,35 +13,65 @@ export default function About() {
       }}
     >
       <Paper
-        elevation={6}
+        elevation={8}
         sx={{
-          p: 4,
-          maxWidth: 600,
-          borderRadius: "16px",
-          backgroundColor: "#264653", // Dark Blue card background
-          color: "white",
+          p: 5,
+          maxWidth: 650,
+          borderRadius: "20px",
           textAlign: "center",
+          background: "rgba(255, 255, 255, 0.08)",
+          backdropFilter: "blur(12px)",
+          border: "1px solid rgba(255, 255, 255, 0.15)",
+          color: "white",
         }}
       >
+        {/* Title */}
         <Typography
           variant="h3"
           gutterBottom
           sx={{
-            fontWeight: "bold",
-            color: "#e9c46a", // Yellow heading
+            fontWeight: "800",
+            background: "linear-gradient(90deg, #ffdd57, #ff6f61)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
           }}
         >
-           About API Hunter
+          About API Hunter
         </Typography>
 
-        <Typography variant="h6" sx={{ mb: 2, color: "#f1faee" }}>
-          API Hunter helps you discover and search free/public APIs easily.
+        {/* Subtitle */}
+        <Typography
+          variant="h6"
+          sx={{
+            mb: 3,
+            fontWeight: "500",
+            color: "#e0e0e0",
+          }}
+        >
+          Your gateway to the world of APIs 🌍
         </Typography>
 
-        <Typography variant="body1" sx={{ opacity: 0.9, color: "#a8dadc" }}>
-          You can explore a variety of APIs, filter them by keywords, and
-          directly visit their documentation. Our goal is to make finding
-          developer resources simple and fun 🎯.
+        {/* Body */}
+        <Typography
+          variant="body1"
+          sx={{
+            color: "#cfd8dc",
+            lineHeight: 1.8,
+            fontSize: "1.05rem",
+          }}
+        >
+          API Hunter is more than just a directory — it’s a toolkit for curious
+          developers. We gather public and free APIs from across the globe and
+          make them accessible in one clean, organized place.  
+          <br />
+          <br />
+          Whether you’re building your next side project, experimenting with new
+          ideas, or looking for inspiration, API Hunter helps you discover
+          powerful resources faster.  
+          <br />
+          <br />
+          Our mission is simple: **turn the overwhelming API jungle into a smooth
+          hunting ground for developers**. 🚀
         </Typography>
       </Paper>
     </Box>
