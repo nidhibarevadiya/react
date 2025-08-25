@@ -1,0 +1,136 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f9fa;
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #2c3e50;
+}
+
+/* Book list */
+.book-list {
+  margin-top: 20px;
+}
+
+.book-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f4f6f9;
+  border-radius: 8px;
+  padding: 12px 18px;
+  margin-bottom: 12px;
+  transition: 0.2s ease;
+}
+
+.book-card:hover {
+  background: #eaf0f6;
+}
+
+/* Book info */
+.book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-name {
+  font-weight: bold;
+  font-size: 18px;
+  color: #34495e;
+}
+
+.book-author {
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.book-price {
+  font-size: 15px;
+  color: #27ae60;
+  margin-top: 4px;
+}
+
+/* Buttons */
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.btn-edit {
+  background: #3498db;
+  color: white;
+  margin-right: 8px;
+}
+
+.btn-edit:hover {
+  background: #2980b9;
+}
+
+.btn-delete {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #c0392b;
+}
+
+/* Add Book Form */
+.add-book-form {
+  margin-top: 30px;
+  background: #fdfdfd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-book-form h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #2c3e50;
+}
+
+.add-book-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.add-book-form button {
+  background: #2ecc71;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+.add-book-form button:hover {
+  background: #27ae60;
+}
