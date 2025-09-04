@@ -1,0 +1,29 @@
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider , GithubAuthProvider  } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD5r2YPq0VwrgtYVzlP2RDWlsRb9Pe0pUw",
+  authDomain: "fir-detabase-32ede.firebaseapp.com",
+  projectId: "fir-detabase-32ede",
+  storageBucket: "fir-detabase-32ede.firebasestorage.app",
+  messagingSenderId: "446447255508",
+  appId: "1:446447255508:web:0bda16c5d94f82d7202041"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore(app)
+export const auth = getAuth(app)
+
+export const googleProvider = new GoogleAuthProvider();
+export const githubProvider = new GithubAuthProvider();
+
+
+
+
+
+
+
+

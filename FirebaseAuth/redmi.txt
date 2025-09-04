@@ -1,0 +1,7 @@
+# Redux Toolkit (Cart API)
+
+#  AddToCart
+#  RemoveToCart
+#  ResetCart
+
+
